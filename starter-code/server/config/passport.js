@@ -1,3 +1,4 @@
+/*jshint esversion: 6*/
 const LocalStrategy = require("passport-local").Strategy;
 const User          = require("../models/user");
 const bcrypt        = require("bcrypt");
@@ -24,4 +25,4 @@ module.exports = (passport) => {
       cb(null, user);
     });
   });
-}
+};
