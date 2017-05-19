@@ -1,3 +1,17 @@
 <section id="main">
   <h1> Secrets </h1>
 </section>
+
+<h2> Authentication </h2>
+<form>
+  <h2> Login or Signup </h2>
+  <label> Username </label>
+  <input type="text" [(ngModel)]="formInfo.username" name="username"/>
+  <br>
+  <label> Password </label>
+  <input type="password" [(ngModel)]="formInfo.password" name="password"/>
+
+  <button (click)="login()"> login </button>
+  <button (click)="signup()"> signup </button>
+</form>
+<p class="error"> {{ error }} </p>

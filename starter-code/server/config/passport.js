@@ -1,6 +1,8 @@
+/*jshint esversion: 6*/
+
 const LocalStrategy = require("passport-local").Strategy;
 const User          = require("../models/user");
-const bcrypt        = require("bcrypt");
+const bcrypt        = require("bcryptjs");
 
 module.exports = (passport) => {
   passport.use(new LocalStrategy((username, password, next) => {
@@ -24,4 +26,4 @@ module.exports = (passport) => {
       cb(null, user);
     });
   });
-}
+};
