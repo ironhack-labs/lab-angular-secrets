@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from "rxjs/Rx";
 
 @Component({
   selector: 'app-root',
@@ -9,6 +8,5 @@ import { Observable } from "rxjs/Rx";
 export class AppComponent implements OnInit {
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }
