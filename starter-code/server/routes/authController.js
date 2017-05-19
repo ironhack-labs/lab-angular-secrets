@@ -1,3 +1,4 @@
+/*jshint esversion: 6*/
 const express        = require("express");
 const authController = express.Router();
 const passport       = require("passport");
@@ -8,6 +9,7 @@ const bcrypt         = require("bcrypt");
 const bcryptSalt     = 19;
 
 authController.post("/signup", (req, res, next) => {
+  console.log('1');
   let username = req.body.username;
   let password = req.body.password;
   let name     = req.body.name;
@@ -16,16 +18,17 @@ authController.post("/signup", (req, res, next) => {
   if (!username || !password || !name || !secret) {
     res.status(400).json({ message: "Provide all the fields to sign up" });
   }
-
+  console.log('2');
   User.findOne({ username }, "username", (err, user) => {
     if (user !== null) {
       res.status(400).json({ message: "The username already exists" });
       return;
     }
+    console.log('3');
 
     let salt     = bcrypt.genSaltSync(bcryptSalt);
     let hashPass = bcrypt.hashSync(password, salt);
-
+    console.log('4');
     let newUser  = User({
       username,
       password: hashPass,
