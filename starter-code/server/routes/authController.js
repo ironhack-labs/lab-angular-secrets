@@ -1,10 +1,12 @@
+/*jshint esversion: 6*/
+
 const express        = require("express");
 const authController = express.Router();
 const passport       = require("passport");
 
 const User           = require("../models/user");
 
-const bcrypt         = require("bcrypt");
+const bcrypt         = require("bcryptjs");
 const bcryptSalt     = 19;
 
 authController.post("/signup", (req, res, next) => {
