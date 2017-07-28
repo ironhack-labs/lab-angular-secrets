@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express        = require("express");
 const path           = require("path");
 const favicon        = require("serve-favicon");
@@ -8,6 +9,7 @@ const cors           = require("cors");
 const authController = require("./routes/authController");
 const session        = require("express-session");
 const passport       = require("passport");
+
 
 const app            = express();
 
