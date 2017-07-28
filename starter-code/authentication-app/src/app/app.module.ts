@@ -10,7 +10,12 @@ import { AuthSignupComponent } from './auth-signup/auth-signup.component';
 import { MyPrivatePageComponent } from './my-private-page/my-private-page.component';
 import { RouterModule, Routes } from '@angular/router'
 
-const Routes = []
+const Routes = [
+    { path: '', component: AppComponent },
+    { path: '/login', component: AuthLoginComponent },
+    { path: '/signup', component: AuthSignupComponent },
+    { path: '**', redirectTo: '' }
+];
 
 @NgModule({
   declarations: [

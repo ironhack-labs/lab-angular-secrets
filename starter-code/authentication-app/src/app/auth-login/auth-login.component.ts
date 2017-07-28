@@ -25,14 +25,6 @@ export class AuthLoginComponent implements OnInit {
     );
   }
 
-  signup() {
-    this.session.signup(this.formInfo)
-    .subscribe(
-      (user) => this.user = user,
-      (err) => this.error = err
-    );
-  }
-
   ngOnInit() {
   }
 }
