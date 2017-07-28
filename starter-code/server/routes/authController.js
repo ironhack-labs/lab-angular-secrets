@@ -12,6 +12,7 @@ authController.post("/signup", (req, res, next) => {
   let password = req.body.password;
   let name     = req.body.name;
   let secret   = req.body.secret;
+  // console.log('holi ya tamos', req.body);
 
   if (!username || !password || !name || !secret) {
     res.status(400).json({ message: "Provide all the fields to sign up" });
