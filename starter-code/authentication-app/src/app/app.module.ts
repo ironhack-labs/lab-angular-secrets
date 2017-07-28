@@ -8,6 +8,14 @@ import { AppComponent } from './app.component';
 import { AuthLoginComponent } from './auth-login/auth-login.component';
 import { AuthSignupComponent } from './auth-signup/auth-signup.component';
 import { MyPrivatePageComponent } from './my-private-page/my-private-page.component';
+import { RouterModule, Routes } from '@angular/router'
+
+const Routes = [
+    { path: '', component: AppComponent },
+    { path: '/login', component: AuthLoginComponent },
+    { path: '/signup', component: AuthSignupComponent },
+    { path: '**', redirectTo: '' }
+];
 
 @NgModule({
   declarations: [
@@ -19,7 +27,8 @@ import { MyPrivatePageComponent } from './my-private-page/my-private-page.compon
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    Routes
   ],
   providers: [SessionService],
   bootstrap: [AppComponent]
