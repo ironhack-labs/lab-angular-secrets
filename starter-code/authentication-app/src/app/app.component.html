@@ -1,3 +1,13 @@
 <section id="main">
   <h1> Secrets </h1>
 </section>
+
+<div *ngIf="!session.user">
+  <a href="/login">Login</a>
+  <a href="/signup">Signup</a>
+</div>
+
+<div *ngIf="session.user">
+  <pre>{{ session.user | json }}</pre>
+  <button (click)="logout()">Logout</button>
+</div>
