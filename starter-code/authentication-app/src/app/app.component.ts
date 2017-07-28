@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from "rxjs/Rx";
+import { Component } from '@angular/core';
+import { SessionService } from './session.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
-  constructor() { }
+export class AppComponent {
+  title = 'Secrets';
+  constructor(private session:SessionService){ }
 
-  ngOnInit() {
+  logout(){
+    this.session.logout().subscribe();
   }
 }
