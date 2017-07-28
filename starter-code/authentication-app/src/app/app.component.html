@@ -1,3 +1,13 @@
 <section id="main">
   <h1> Secrets </h1>
 </section>
+
+<div *ngIf="session.user && session.startLoginCompleted">
+  <pre>{{ session.user | json }}</pre>
+  <button (click)="logout()">Logout</button>
+</div>
+<div *ngIf="!session.user && session.startLoginCompleted">
+  <a [routerLink]="['login']">Login</a>
+  <a [routerLink]="['signup']">Signup</a>
+</div>
+<router-outlet></router-outlet>
