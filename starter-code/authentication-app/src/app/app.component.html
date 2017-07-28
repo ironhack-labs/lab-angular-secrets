@@ -3,8 +3,8 @@
 </section>
 
 <div *ngIf="!session.user">
-  <a href="/login">Login</a>
-  <a href="/signup">Signup</a>
+  <a [routerLink]="['/login']"> Login </a>
+  <a [routerLink]="['/signup']"> Signup </a>
 </div>
 
 <div *ngIf="session.user">
