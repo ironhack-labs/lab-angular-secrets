@@ -1,9 +1,7 @@
 const express        = require("express");
 const authController = express.Router();
 const passport       = require("passport");
-
 const User           = require("../models/user");
-
 const bcrypt         = require("bcrypt");
 const bcryptSalt     = 19;
 
@@ -54,6 +52,7 @@ authController.post("/login", (req, res, next) => {
 
     req.login(user, (err) => {
       if (err) { return res.status(500).json({ message: "Something went wrong" }); }
+      console.log('done');
       return res.status(200).json(req.user);
     });
   })(req, res, next);

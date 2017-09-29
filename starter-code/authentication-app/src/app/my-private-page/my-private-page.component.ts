@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionService } from "./../session.service";
+import { AuthService } from "../services/session.service";
 
 @Component({
   selector: 'app-my-private-page',
@@ -7,13 +7,12 @@ import { SessionService } from "./../session.service";
   styleUrls: ['./my-private-page.component.css']
 })
 export class MyPrivatePageComponent implements OnInit {
-  username: string = "";
-  secret: string = "";
+  
+  user:Object
 
-  constructor(private session: SessionService) { }
+  constructor(private session: AuthService) { }
 
   ngOnInit() {
-    this.username = this.session.user.name,
-    this.secret   = this.session.user.secret;
+    this.user = this.session.getUser()
   }
 }
