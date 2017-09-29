@@ -7,13 +7,14 @@ import { SessionService } from "./../session.service";
   styleUrls: ['./my-private-page.component.css']
 })
 export class MyPrivatePageComponent implements OnInit {
-  username: string = "";
-  secret: string = "";
+  user:object;
 
   constructor(private session: SessionService) { }
-
+  this.user = this.auth.getUser();
+  this.auth.getLoginEventEmitter()
+      .subscribe( user => this.user=user );
   ngOnInit() {
-    this.username = this.session.user.name,
-    this.secret   = this.session.user.secret;
+    // this.username = this.session.user.name,
+    // this.secret   = this.session.user.secret;
   }
 }
