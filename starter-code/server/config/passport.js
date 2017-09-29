@@ -5,6 +5,7 @@ const bcrypt        = require("bcrypt");
 module.exports = (passport) => {
   passport.use(new LocalStrategy((username, password, next) => {
     User.findOne({ username }, (err, user) => {
+      console.log(user);
       if (err) { return next(err); }
       if (!user) { next(null, false, { message: "Incorrect username" }); }
       if (!bcrypt.compareSync(password, user.password)) { next(null, false, { message: "Incorrect password" });
@@ -24,4 +25,4 @@ module.exports = (passport) => {
       cb(null, user);
     });
   });
-}
+};
