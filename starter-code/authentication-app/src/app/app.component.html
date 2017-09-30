@@ -16,8 +16,8 @@
 
   <div *ngIf="!user">
     <ul class='links'>
-      <li><a [routerLink]="['/signup']">Signup</a></li>
-      <li><a [routerLink]="['/login']">Login</a></li>
+      <li><button [routerLink]="['/signup']">Signup</button></li>
+      <li><button [routerLink]="['/login']">Login</button></li>
     </ul>
   </div>
   <router-outlet></router-outlet>

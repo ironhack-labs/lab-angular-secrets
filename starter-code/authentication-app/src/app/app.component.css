@@ -11,3 +11,11 @@ section{
   display: inline-block;
   margin: 20px;
 }
+
+button{
+  background-color: blue;
+  color: white;
+  width: 80px;
+  font-size: 18px;
+  padding:5px;
+}
