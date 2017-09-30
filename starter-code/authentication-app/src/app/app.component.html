@@ -1,3 +1,25 @@
 <section id="main">
-  <h1> Secrets </h1>
+  <h1>
+    Welcome to {{title}}!
+  </h1>
+
+  <div *ngIf="user">
+    <h2> You are now logged in as {{ user.username }}!! </h2>
+    <!-- <p> Here's the user object </p>
+    <pre> {{ user | json }} </pre> -->
+    <button (click)="auth.logout().subscribe()"> logout </button>
+
+    <!-- </div>
+    <p class="error"> {{ error }} </p>
+    </div> -->
+  </div>
+
+  <div *ngIf="!user">
+    <ul class='links'>
+      <li><a [routerLink]="['/signup']">Signup</a></li>
+      <li><a [routerLink]="['/login']">Login</a></li>
+    </ul>
+  </div>
+  <router-outlet></router-outlet>
+
 </section>

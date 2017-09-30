@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from "rxjs/Rx";
+import { SessionService } from './services/session.service';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,12 @@ import { Observable } from "rxjs/Rx";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor() { }
+  title = 'Angular - Secrets';
+  // user: any;
+  constructor(public auth:SessionService) {
+    // this.auth.getLoginEventEmitter()
+    //     .subscribe( user => this.user=user );
+  };
 
   ngOnInit() {
   }
