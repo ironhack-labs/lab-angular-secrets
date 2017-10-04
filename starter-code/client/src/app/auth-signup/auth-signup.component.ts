@@ -25,6 +25,7 @@ export class AuthSignupComponent implements OnInit {
       .subscribe(
         (data) => {
           console.log('Signup Success! --> ', data);
+          this.sessionService.updateInfo(data);
           this.router.navigate(['private']);
         }
       )

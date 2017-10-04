@@ -10,12 +10,12 @@ export class MyPrivatePageComponent implements OnInit {
   username: string = "";
   secret: string = "";
 
-  userInfo: any = {};
+  //userInfo: any;
 
   constructor(private sessionService: SessionService) { }
 
   ngOnInit() {
-    console.log('HERE!');
+    /*console.log('HERE!');
     this.sessionService.isLogged()
     .subscribe(
       (user: any) =>{
@@ -27,6 +27,9 @@ export class MyPrivatePageComponent implements OnInit {
           this.userInfo = null;
         }
       }
-    )
+    )*/
+    this.username = this.sessionService.username;
+    this.secret = this.sessionService.secret;
   }
+
 }

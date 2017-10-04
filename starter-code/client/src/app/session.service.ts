@@ -10,6 +10,10 @@ export class SessionService {
 
   baseUrl: string = 'http://localhost:3000';
 
+  username: string = '';
+
+  secret: string = '';
+
   constructor(
     private http: HttpClient
   ) { }
@@ -36,6 +40,11 @@ export class SessionService {
     return this.http.delete(
       this.baseUrl + '/api/delete'
     );
+  }
+
+  updateInfo(data: any) {
+    this.username = data.username;
+    this.secret = data.secret;
   }
 
 
