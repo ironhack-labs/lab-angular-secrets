@@ -5,7 +5,7 @@ const passport       = require("passport");
 const User           = require("../models/user");
 
 const bcrypt         = require("bcrypt");
-const bcryptSalt     = 19;
+const bcryptSalt     = 10;
 
 authController.post("/signup", (req, res, next) => {
   let username = req.body.username;
@@ -17,6 +17,8 @@ authController.post("/signup", (req, res, next) => {
     res.status(400).json({ message: "Provide all the fields to sign up" });
   }
 
+//                   criteria            projection
+// User.findOne( { username: username }, { username: 1 } )
   User.findOne({ username }, "username", (err, user) => {
     if (user !== null) {
       res.status(400).json({ message: "The username already exists" });
@@ -26,7 +28,7 @@ authController.post("/signup", (req, res, next) => {
     let salt     = bcrypt.genSaltSync(bcryptSalt);
     let hashPass = bcrypt.hashSync(password, salt);
 
-    let newUser  = User({
+    const newUser  = new User({
       username,
       password: hashPass,
       name,
@@ -65,8 +67,16 @@ authController.post("/logout", (req, res) => {
 });
 
 authController.get("/loggedin", (req, res) => {
-  if (req.isAuthenticated()) { return res.status(200).json(req.user); }
-  return res.status(403).json({ message: "Unauthorized" });
+  let amILoggedIn = false;
+  if (req.user) {
+    req.user.encryptedPassword = undefined;
+    amILoggedIn = true;
+  }
+
+  res.status(200).json({
+    isLoggedIn: amILoggedIn,
+    userInfo: req.user
+  });
 });
 
 authController.get("/private", (req, res) => {
