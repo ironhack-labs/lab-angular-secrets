@@ -14,7 +14,17 @@ const app            = express();
 // Passport configuration
 require("./config/passport")(passport);
 
-// Mongoose configuration
+var whitelist = [
+    'http://localhost:4200',
+];
+var corsOptions = {
+    origin: function(origin, callback){
+        var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
+        callback(null, originIsWhitelisted);
+    },
+    credentials: true
+};
+app.use(cors(corsOptions));// Mongoose configuration
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/angular-authentication");
 
