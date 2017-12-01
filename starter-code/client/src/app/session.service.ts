@@ -7,7 +7,7 @@ import {environment} from '../environments/environment';
 const BASEURL = environment.BASEURL + "/auth";
 
 @Injectable()
-export class AuthService {
+export class SessionService {
 
   private user:object;
   private userLoginEvent:EventEmitter<any> = new EventEmitter<any>();
