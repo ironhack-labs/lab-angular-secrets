@@ -1,3 +1,11 @@
 <section id="main">
   <h1> Secrets </h1>
 </section>
+<ul *ngIf = "!user">
+  <li><a [routerLink]="['/login']">Login</a></li>
+  <li><a [routerLink]="['/signup']">Signup</a></li>
+</ul>
+<ul *ngIf="user">
+    <li><a [routerLink]="['/logout']">LogOut</a></li>
+</ul>
+<router-outlet></router-outlet>
