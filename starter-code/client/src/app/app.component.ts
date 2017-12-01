@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from "rxjs/Rx";
+import { SessionService } from './session.service';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +8,26 @@ import { Observable } from "rxjs/Rx";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor() { }
+
+  userInfo: any;
+
+  constructor(
+    private sessionService: SessionService
+  ) { }
 
   ngOnInit() {
+    this.sessionService.isLogged()
+    .subscribe(
+      (user: any) =>{
+        if (user.isLoggedIn) {
+          this.userInfo = user.userInfo
+        }
+        else {
+          this.userInfo = null;
+        }
+      }
+    )
   }
+
+
 }

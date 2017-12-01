@@ -1,3 +1,20 @@
-<section id="main">
-  <h1> Secrets </h1>
-</section>
+<h2> Secrets </h2>
+
+<div *ngIf="!userInfo">
+
+<a routerLink="/login"> Login </a>
+<br>
+
+<a routerLink="/signup"> Signup </a>
+<br>
+
+</div>
+
+<div *ngIf="userInfo">
+
+<a routerLink="/logout"> Logout </a>
+<br>
+
+</div>
+
+<router-outlet></router-outlet>
