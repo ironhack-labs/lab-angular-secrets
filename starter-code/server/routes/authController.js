@@ -59,9 +59,15 @@ authController.post("/login", (req, res, next) => {
   })(req, res, next);
 });
 
-authController.post("/logout", (req, res) => {
+authController.post("/logout", (req, res, next) => {
   req.logout();
-  res.status(200).json({ message: "Success" });
+  req.session.destroy(function(err) {
+     if (err) {
+       next(err);
+     } else {
+       res.status(200).json({ message: "Success" });
+     }
+  })
 });
 
 authController.get("/loggedin", (req, res) => {

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from "./../session.service";
 
+var $: any;
+
 @Component({
   selector: 'app-my-private-page',
   templateUrl: './my-private-page.component.html',
