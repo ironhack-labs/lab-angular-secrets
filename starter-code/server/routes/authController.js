@@ -31,7 +31,12 @@ authController.post("/signup", (req, res, next) => {
       password: hashPass,
       name,
       secret
-    });
+    }, {
+    timestamps: {
+      createdAt: 'created_at',
+      updatedAt: 'updated_at'
+    }
+  });
 
     console.log(newUser);
 
