@@ -31,9 +31,9 @@ export class SessionService {
   }
 
   private doAuthentication(user) {
-  this.user = user;
-  localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(this.user));
-  return this.user;
+    this.user = user;
+    localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(this.user));
+    return this.user;
   }
 
   protected handleError(error: Response | any): Observable<any> {
