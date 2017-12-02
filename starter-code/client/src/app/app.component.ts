@@ -7,6 +7,7 @@ import { Observable } from "rxjs/Rx";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  statusLogged = localStorage.CURRENT_USER_KEY;
   constructor() { }
 
   ngOnInit() {
