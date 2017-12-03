@@ -16,6 +16,10 @@ export class SessionService {
 
   user: any;
 
+  private userSubject = new Subject<any>();
+
+  userJustLoggedIn$ = this.userSubject.asObservable();
+
   constructor(private http: Http) { }
 
   handleError(e) {
@@ -32,8 +36,11 @@ export class SessionService {
   }
 
   login(user) {
-    return this.http.post(`/login`, user)
-      .map(res => res.json())
+    return this.http.post(`${BASEURL}/login`, JSON.stringify(user), this.options)
+      .map(res => {
+        this.user = res.json();
+        return this.userSubject.next(this.user);
+      })
       .catch(this.handleError);
   }
 
