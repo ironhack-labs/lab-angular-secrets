@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from "./../session.service";
 
+
 @Component({
   selector: 'app-my-private-page',
   templateUrl: './my-private-page.component.html',
@@ -13,5 +14,6 @@ export class MyPrivatePageComponent implements OnInit {
   constructor(private session: SessionService) { }
 
   ngOnInit() {
+    console.log(this.session.isLogged());
   }
 }

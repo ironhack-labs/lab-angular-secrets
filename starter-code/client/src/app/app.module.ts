@@ -8,7 +8,22 @@ import { AppComponent } from './app.component';
 import { AuthLoginComponent } from './auth-login/auth-login.component';
 import { AuthSignupComponent } from './auth-signup/auth-signup.component';
 import { MyPrivatePageComponent } from './my-private-page/my-private-page.component';
+import { Routes, RouterModule } from '@angular/router';
 
+const routes: Routes = [
+    { path: 'signup', component: AuthSignupComponent },
+    { path: 'login', component: AuthLoginComponent },
+    { path: 'private', component: MyPrivatePageComponent }
+];
+// For later:
+/*
+{ path: 'users', component: UserListComponent, canActivate: [IsAuthenticatedGuard] },
+{ path: 'users/:id', component: UserComponent, canActivate: [IsAuthenticatedGuard],
+  canDeactivate: [CanLeaveEditUserGuard], resolve: {
+    user: UserResolverGuard
+  } },
+{ path: '**', redirectTo: '' }
+*/
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +34,8 @@ import { MyPrivatePageComponent } from './my-private-page/my-private-page.compon
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [SessionService],
   bootstrap: [AppComponent]
