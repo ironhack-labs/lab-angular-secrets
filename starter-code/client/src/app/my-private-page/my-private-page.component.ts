@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from "./../session.service";
 
-var $: any;
 
 @Component({
   selector: 'app-my-private-page',
@@ -15,5 +14,6 @@ export class MyPrivatePageComponent implements OnInit {
   constructor(private session: SessionService) { }
 
   ngOnInit() {
+    console.log(this.session.isLogged());
   }
 }

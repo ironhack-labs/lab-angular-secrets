@@ -4,15 +4,15 @@
 <!-- <section id="main">
   <h1> Secrets </h1>
 </section> -->
-<div *ngIf="!statusLogged">
+<div *ngIf="!user">
   no logged
   <a [routerLink]="['login']"><button>Login</button></a>
   <a [routerLink]="['signup']"><button>Signup</button></a>
 </div>
 
-<div *ngIf="statusLogged">
+<div *ngIf="user">
   logged
-  <a [routerLink]="['logout']"><button>Logout</button></a>
+  <a (click)="logout()"><button>Logout</button></a>
 </div>
 <router-outlet></router-outlet>
 

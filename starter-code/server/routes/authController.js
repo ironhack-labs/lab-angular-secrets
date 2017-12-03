@@ -5,7 +5,7 @@ const passport       = require("passport");
 const User           = require("../models/user");
 
 const bcrypt         = require("bcrypt");
-const bcryptSalt     = 19;
+const bcryptSalt     = 10;
 
 authController.post("/signup", (req, res, next) => {
   let username = req.body.username;
@@ -25,7 +25,7 @@ authController.post("/signup", (req, res, next) => {
 
     let salt     = bcrypt.genSaltSync(bcryptSalt);
     let hashPass = bcrypt.hashSync(password, salt);
-
+    
     let newUser  = User({
       username,
       password: hashPass,
@@ -34,7 +34,7 @@ authController.post("/signup", (req, res, next) => {
     });
 
     console.log(newUser);
-
+console.log('PETICION3')
     newUser.save((err) => {
       if (err) { res.status(400).json({ message: "Something went wrong" }); }
       else {

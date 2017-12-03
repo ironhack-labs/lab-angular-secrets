@@ -8,7 +8,6 @@ const cors           = require("cors");
 const authController = require("./routes/authController");
 const session        = require("express-session");
 const passport       = require("passport");
-
 const app            = express();
 
 // Passport configuration
@@ -25,7 +24,6 @@ app.use(session({
   saveUninitialized: true,
   cookie: { httpOnly: true, maxAge: 2419200000 }
 }));
-
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors());
@@ -38,8 +36,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/api', authController);
-app.all('/*', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html');
-});
+// app.all('/*', (req, res) => {
+//   res.sendFile(__dirname + '/public/index.html');
+// });
 
 module.exports = app;

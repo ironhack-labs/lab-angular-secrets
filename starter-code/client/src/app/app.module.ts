@@ -13,7 +13,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
     { path: 'signup', component: AuthSignupComponent },
     { path: 'login', component: AuthLoginComponent },
-    { path: 'private', redirectTo: 'MyPrivatePageComponent' }
+    { path: 'private', component: MyPrivatePageComponent }
 ];
 // For later:
 /*
