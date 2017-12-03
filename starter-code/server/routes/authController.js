@@ -5,7 +5,7 @@ const passport       = require("passport");
 const User           = require("../models/user");
 
 const bcrypt         = require("bcrypt");
-const bcryptSalt     = 19;
+const bcryptSalt     = 11;
 
 authController.post("/signup", (req, res, next) => {
   let username = req.body.username;
@@ -31,7 +31,12 @@ authController.post("/signup", (req, res, next) => {
       password: hashPass,
       name,
       secret
-    });
+    }, {
+    timestamps: {
+      createdAt: 'created_at',
+      updatedAt: 'updated_at'
+    }
+  });
 
     console.log(newUser);
 

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { SessionService } from "./session.service";
+import { SessionService } from "./services/session.service";
 
 import { AppComponent } from './app.component';
 import { AuthLoginComponent } from './auth-login/auth-login.component';
