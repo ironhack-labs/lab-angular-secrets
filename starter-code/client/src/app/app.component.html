@@ -2,13 +2,10 @@
   <h1> Secrets </h1>
 </section>
 <div *ngIf="!user">
-  <a [routerLink]="['login']"> login </a>
-  <a [routerLink]="['signup']"> signup </a>
+  <button [routerLink]="['login']"> login </button>
+  <button [routerLink]="['signup']"> signup </button>
 </div>
-
 <div *ngIf="user">
   <button (click)="logout()"> logout </button>
 </div>
-<p class="error"> {{ error }} </p>
-
 <router-outlet></router-outlet>
