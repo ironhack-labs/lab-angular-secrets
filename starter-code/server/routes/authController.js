@@ -49,8 +49,10 @@ authController.post("/signup", (req, res, next) => {
 
 authController.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
-    if (err) { return res.status(401).json(err); }
-    if (!user) { return res.status(401).json(info); }
+    if (err) {
+      return res.status(401).json(err); }
+    if (!user) {
+      return res.status(401).json(info); }
 
     req.login(user, (err) => {
       if (err) { return res.status(500).json({ message: "Something went wrong" }); }
