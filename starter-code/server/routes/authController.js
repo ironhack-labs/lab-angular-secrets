@@ -5,7 +5,7 @@ const passport       = require("passport");
 const User           = require("../models/user");
 
 const bcrypt         = require("bcrypt");
-const bcryptSalt     = 19;
+const bcryptSalt     = 10;
 
 authController.post("/signup", (req, res, next) => {
   let username = req.body.username;
@@ -15,6 +15,7 @@ authController.post("/signup", (req, res, next) => {
 
   if (!username || !password || !name || !secret) {
     res.status(400).json({ message: "Provide all the fields to sign up" });
+    return;
   }
 
   User.findOne({ username }, "username", (err, user) => {

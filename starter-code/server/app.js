@@ -16,7 +16,10 @@ require("./config/passport")(passport);
 
 // Mongoose configuration
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/angular-authentication");
+mongoose.connect("mongodb://localhost/angular-authentication", {useMongoClient: true});
+
+// CORS configuration
+const corsConfig = require('./config/cors');
 
 // Session
 app.use(session({
@@ -28,7 +31,7 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(cors());
+app.use(cors(corsConfig));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // uncomment after placing your favicon in /public
