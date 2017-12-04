@@ -29,7 +29,7 @@ import { routes } from './routes';
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [SessionService],
+  providers: [SessionService, IsAuthenticatedGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -22,6 +22,10 @@ export class SessionService {
 
   constructor(private http: Http) { }
 
+  isAuthenticated() {
+    return this.user !== undefined && this.user !== null;
+  }
+
   handleError(e) {
     return Observable.throw(e.json().message);
   }
@@ -45,19 +49,19 @@ export class SessionService {
   }
 
   logout() {
-    return this.http.post(`/logout`, {})
+    return this.http.post(`${BASEURL}/logout`, {}, this.options)
       .map(res => res.json())
       .catch(this.handleError);
   }
 
   isLoggedIn() {
-    return this.http.get(`/loggedin`)
+    return this.http.get(`${BASEURL}/loggedin`, this.options)
       .map(res => res.json())
       .catch(this.handleError);
   }
 
   getPrivateData() {
-    return this.http.get(`/private`)
+    return this.http.get(`${BASEURL}/private`, this.options)
       .map(res => res.json())
       .catch(this.handleError);
   }

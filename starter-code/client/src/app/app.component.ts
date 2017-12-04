@@ -11,4 +11,17 @@ export class AppComponent implements OnInit {
   user:any;
   constructor(private session: SessionService) { }
 
+  ngOnInit() {
+    this.session.isLoggedIn()
+      .subscribe((user) => this.user = user);
+    this.session.userJustLoggedIn$.subscribe((user) => this.user = user);
+  }
+
+  logout() {
+    this.session.logout()
+      .subscribe(
+        ()=>this.user = null,
+      )
+  }
+
 }
