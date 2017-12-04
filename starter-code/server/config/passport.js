@@ -15,13 +15,10 @@ module.exports = (passport) => {
   }));
 
   passport.serializeUser((user, cb) => {
-    cb(null, user.id);
+    cb(null, user._id);
   });
 
   passport.deserializeUser((id, cb) => {
-    User.findOne({ _id: id }, (err, user) => {
-      if (err) { return cb(err); }
-      cb(null, user);
-    });
+    User.findById(id, cb);
   });
 }

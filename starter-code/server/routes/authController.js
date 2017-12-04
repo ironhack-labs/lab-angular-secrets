@@ -15,6 +15,7 @@ authController.post("/signup", (req, res, next) => {
 
   if (!username || !password || !name || !secret) {
     res.status(400).json({ message: "Provide all the fields to sign up" });
+    return;
   }
 
   User.findOne({ username }, "username", (err, user) => {
