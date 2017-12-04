@@ -1,0 +1,52 @@
+
+<form (ngSubmit)="signup(formInfo)" class="form-horizontal" #formInfo="ngForm">
+<legend><h3>Signup</h3></legend>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="username">Username</label>
+  <div class="col-md-4">
+  <input name="username" type="text" placeholder="Username"
+   class="form-control input-md" [(ngModel)]="username">
+
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="name">Name</label>
+  <div class="col-md-4">
+  <input  name="name" type="text" placeholder="Name"
+  class="form-control input-md" [(ngModel)]="name">
+
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="secret">Your secret</label>
+  <div class="col-md-4">
+  <input  name="secret" type="password" placeholder="Your secret"
+  class="form-control input-md" [(ngModel)]="secret">
+
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="password">Password</label>
+  <div class="col-md-4">
+  <input name="password" type="password" placeholder="Password"
+  class="form-control input-md" [(ngModel)]="password">
+
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="signup"></label>
+  <div class="col-md-4">
+    <button id="signup" name="signup" class="btn btn-primary">Sign up</button>
+  </div>
+</div>
+
+</form>
