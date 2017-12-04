@@ -5,7 +5,7 @@ const passport       = require("passport");
 const User           = require("../models/user");
 
 const bcrypt         = require("bcrypt");
-const bcryptSalt     = 19;
+const bcryptSalt     = 10;
 
 authController.post("/signup", (req, res, next) => {
   let username = req.body.username;
