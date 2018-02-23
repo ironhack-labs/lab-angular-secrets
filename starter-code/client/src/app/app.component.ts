@@ -9,25 +9,15 @@ import { SessionService } from "./services/session.service";
 })
 export class AppComponent implements OnInit {
 
-  username:string;
-  password:string;
+  // username:string;
+  // password:string;
   error:string;
   
   constructor(public session:SessionService) { }
 
   ngOnInit() {
-  }
-
-  login(){
-    this.session.login(this.username,this.password)
-    .catch(e => this.error = e)
-    .subscribe(user => console.log(`Welcome ${user.username}`));
-  }
-
-  signup(){
-    this.session.signup(this.username,this.password)
-    .catch(e => this.error = e)
-    .subscribe();
+    this.session.isLoggedIn().subscribe();
+    console.log(this.session.getUser());
   }
 
   logout(){

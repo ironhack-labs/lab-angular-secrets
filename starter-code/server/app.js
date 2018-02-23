@@ -28,7 +28,18 @@ app.use(session({
 
 require('./passport')(app);
 
-app.use(cors());
+var whitelist = [
+  'http://localhost:4200',
+];
+var corsOptions = {
+  origin: function(origin, callback){
+      var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
+      callback(null, originIsWhitelisted);
+  },
+  credentials: true
+};
+app.use(cors(corsOptions));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // uncomment after placing your favicon in /public
