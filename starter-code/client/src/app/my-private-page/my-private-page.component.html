@@ -1,0 +1,11 @@
+<div *ngIf="session.getUser()">
+
+<h1>My private secret</h1>
+        
+{{session.getUser().secret}}
+
+</div>
+
+<div *ngIf="!session.getUser()">
+    <p>if you are not logged, you cant see the secrets!!</p>
+</div>
