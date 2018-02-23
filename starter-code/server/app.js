@@ -9,14 +9,17 @@ const authController = require("./routes/authController");
 const session        = require("express-session");
 const passport       = require("passport");
 
-const app            = express();
 
+const app            = express();
+    
 // Passport configuration
 require("./config/passport")(passport);
 
 // Mongoose configuration
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/angular-authentication");
+mongoose.connect("mongodb://localhost/angular-authentication")
+.then(()=> console.log("Connected to DB"))
+.catch(e => console.error(e));;
 
 // Session
 app.use(session({
@@ -26,9 +29,24 @@ app.use(session({
   cookie: { httpOnly: true, maxAge: 2419200000 }
 }));
 
+
+
+
+
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(cors());
+    var whitelist = [
+      'http://localhost:4200',
+    ];
+    var corsOptions = {
+      origin: function(origin, callback){
+          var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
+          callback(null, originIsWhitelisted);
+      },
+      credentials: true
+    };
+    app.use(cors(corsOptions));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // uncomment after placing your favicon in /public
