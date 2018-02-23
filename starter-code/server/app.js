@@ -30,7 +30,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
-
+var whiteList =[
+  "http://localhost:4200"
+]
+var corsOptions ={
+  origin: function(origin, callback){
+ var originIsWhiteListed = whiteList.index(origin) !== -1;
+callback(null, originIsWhiteListed)
+},
+credentials:true
+};
 // uncomment after placing your favicon in /public
 app.use(logger('dev'));
 app.use(bodyParser.json());
