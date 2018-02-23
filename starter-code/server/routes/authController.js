@@ -5,13 +5,15 @@ const passport       = require("passport");
 const User           = require("../models/user");
 
 const bcrypt         = require("bcrypt");
-const bcryptSalt     = 19;
+const bcryptSalt     = 10;
 
 authController.post("/signup", (req, res, next) => {
   let username = req.body.username;
   let password = req.body.password;
   let name     = req.body.name;
   let secret   = req.body.secret;
+
+  console.log(username)
 
   if (!username || !password || !name || !secret) {
     res.status(400).json({ message: "Provide all the fields to sign up" });
@@ -59,12 +61,13 @@ authController.post("/login", (req, res, next) => {
   })(req, res, next);
 });
 
-authController.post("/logout", (req, res) => {
+authController.get("/logout", (req, res) => {
   req.logout();
   res.status(200).json({ message: "Success" });
 });
 
 authController.get("/loggedin", (req, res) => {
+  console.log("check logged in")
   if (req.isAuthenticated()) { return res.status(200).json(req.user); }
   return res.status(403).json({ message: "Unauthorized" });
 });
