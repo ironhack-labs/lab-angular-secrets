@@ -1,3 +1,15 @@
-<section id="main">
-  <h1> Secrets </h1>
-</section>
+<h1> Authentication Sample </h1>
+<div *ngIf=true>
+    <div>
+      <a [routerLink]="['/login']">Login</a>
+      <a [routerLink]="['/signup']">Signup</a>
+      <!-- <button (click)="login()"> login </button>
+      <button (click)="signup()"> signup </button> -->
+    </div>
+</div>
+<div *ngIf=true>
+  <pre> {{ session.getUser() | json }} </pre>
+  <button (click)="logout()"> Logout </button>
+</div>
+
+<router-outlet></router-outlet>

@@ -1,15 +1,15 @@
-const express        = require("express");
-const path           = require("path");
-const favicon        = require("serve-favicon");
-const logger         = require("morgan");
-const cookieParser   = require("cookie-parser");
-const bodyParser     = require("body-parser");
-const cors           = require("cors");
+const express = require("express");
+const path = require("path");
+const favicon = require("serve-favicon");
+const logger = require("morgan");
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 const authController = require("./routes/authController");
-const session        = require("express-session");
-const passport       = require("passport");
+const session = require("express-session");
+const passport = require("passport");
 
-const app            = express();
+const app = express();
 
 // Passport configuration
 require("./config/passport")(passport);
@@ -26,9 +26,20 @@ app.use(session({
   cookie: { httpOnly: true, maxAge: 2419200000 }
 }));
 
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(cors());
+require('./passport')(app);
+
+var whitelist = [
+  'http://localhost:4200',
+];
+var corsOptions = {
+  origin: function(origin, callback){
+      var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
+      callback(null, originIsWhitelisted);
+  },
+  credentials: true
+};
+app.use(cors(corsOptions));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // uncomment after placing your favicon in /public
