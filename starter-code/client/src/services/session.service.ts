@@ -16,7 +16,7 @@ export class SessionService {
 
   private user: User;
 
-  baseURL: string = "http://localhost:3000/api/auth";
+  baseURL: string = "http://localhost:3000";
   options: object = {withCredentials:true}
 
   constructor(private http: Http) {
@@ -24,16 +24,19 @@ export class SessionService {
   }
 
   handleError(e) {
+    console.log(e)
     return Observable.throw(e.json().message);
   }
 
   private configureUser() {
+ 
     return user => {
       this.user = user;
       console.log(`Setting user, welcome ${this.user.username}`);
       return user;
     };
   }
+
   private removeUser() {
     return user => {
       console.log(`bye bye ${this.user.username}`);
@@ -42,17 +45,21 @@ export class SessionService {
     };
   }
 
-  signup(user) {
+  getUser(){
+    return this.user;
+  }
+
+  signup(username:string, password:string, name :string, secret:string) {
     return this.http
-      .post(`${this.baseURL}/signup`, user, this.options)
+      .post(`${this.baseURL}/api/signup`, {username, password, name , secret}, this.options)
       .map(res => res.json())
       .map(this.configureUser())
       .catch(this.handleError);
   }
 
-  login(user) {
+  login( username:string, password:string) {
     return this.http
-      .post(`${this.baseURL}/login`, user, this.options)
+      .post(`${this.baseURL}/api/login`, {username, password}, this.options)
       .map(res => res.json())
       .map(this.configureUser())
       .catch(this.handleError);
@@ -60,7 +67,7 @@ export class SessionService {
 
   logout() {
     return this.http
-      .post(`${this.baseURL}/logout`, {}, this.options)
+      .get(`${this.baseURL}/api/logout`, this.options)
       .map(res => res.json())
       .map(this.removeUser())
       .catch(this.handleError);
@@ -68,7 +75,7 @@ export class SessionService {
 
   isLoggedIn() {
     return this.http
-      .get(`${this.baseURL}/loggedin`, this.options)
+      .get(`${this.baseURL}/api/loggedin`, this.options)
       .map(res => res.json())
       .map(this.configureUser())
       .catch(this.handleError);
