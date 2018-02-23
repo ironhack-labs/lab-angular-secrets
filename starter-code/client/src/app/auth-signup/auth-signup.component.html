@@ -1,0 +1,15 @@
+<form >
+    <p> Username:
+      <input type="text" name="username" [(ngModel)]="username" required />
+    </p>
+    <p> Name:
+        <input type="text" name="name" [(ngModel)]="name" required />
+      </p>
+    <p> Password:
+      <input type="password" name="password" [(ngModel)]="password" required />
+    </p>
+    <p> Your Secret:
+        <input type="text" name="secret" [(ngModel)]="secret" required />
+      </p>
+    <button (click)="signup()"> Signup </button>
+  </form>
