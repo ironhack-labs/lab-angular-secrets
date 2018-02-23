@@ -1,17 +1,17 @@
-const express        = require("express");
+const express = require("express");
 const authController = express.Router();
-const passport       = require("passport");
+const passport = require("passport");
 
-const User           = require("../models/user");
+const User = require("../models/user");
 
-const bcrypt         = require("bcrypt");
-const bcryptSalt     = 19;
+const bcrypt = require("bcrypt");
+const bcryptSalt = 19;
 
 authController.post("/signup", (req, res, next) => {
   let username = req.body.username;
   let password = req.body.password;
-  let name     = req.body.name;
-  let secret   = req.body.secret;
+  let name = req.body.name;
+  let secret = req.body.secret;
 
   if (!username || !password || !name || !secret) {
     res.status(400).json({ message: "Provide all the fields to sign up" });
@@ -23,10 +23,10 @@ authController.post("/signup", (req, res, next) => {
       return;
     }
 
-    let salt     = bcrypt.genSaltSync(bcryptSalt);
+    let salt = bcrypt.genSaltSync(bcryptSalt);
     let hashPass = bcrypt.hashSync(password, salt);
 
-    let newUser  = User({
+    let newUser = User({
       username,
       password: hashPass,
       name,

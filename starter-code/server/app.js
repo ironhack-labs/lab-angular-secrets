@@ -1,15 +1,15 @@
-const express        = require("express");
-const path           = require("path");
-const favicon        = require("serve-favicon");
-const logger         = require("morgan");
-const cookieParser   = require("cookie-parser");
-const bodyParser     = require("body-parser");
-const cors           = require("cors");
+const express = require("express");
+const path = require("path");
+const favicon = require("serve-favicon");
+const logger = require("morgan");
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 const authController = require("./routes/authController");
-const session        = require("express-session");
-const passport       = require("passport");
+const session = require("express-session");
+const passport = require("passport");
 
-const app            = express();
+const app = express();
 
 // Passport configuration
 require("./config/passport")(passport);
@@ -26,8 +26,8 @@ app.use(session({
   cookie: { httpOnly: true, maxAge: 2419200000 }
 }));
 
-app.use(passport.initialize());
-app.use(passport.session());
+require('./passport')(app);
+
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
