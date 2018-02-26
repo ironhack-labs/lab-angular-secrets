@@ -13,7 +13,7 @@ module.exports = (passport) => {
       return next(null, user);
     });
   }));
-
+  
   passport.serializeUser((user, cb) => {
     cb(null, user.id);
   });
