@@ -1,3 +1,11 @@
 <section id="main">
   <h1> Secrets </h1>
 </section>
+
+<router-outlet></router-outlet>
+
+<a [routerLink]="['']"> Signup </a>
+<a [routerLink]="['user']"> Login </a>
+<a *ngIf="[user?._id]">SignOut</a>
+
+

@@ -9,9 +9,17 @@ import { SessionService } from "./../session.service";
 export class MyPrivatePageComponent implements OnInit {
   username: string = "";
   secret: string = "";
-
-  constructor(private session: SessionService) { }
+  name:string = "";
+  formInfo:object;
+  user:any;
+  password:string;
+  constructor(public session: SessionService) { 
+  }
 
   ngOnInit() {
-  }
+    this.session.signup(this.username, this.secret, this.name, this.password).subscribe(()=> {
+       this.user = this.formInfo;
+    })
+  } 
+
 }

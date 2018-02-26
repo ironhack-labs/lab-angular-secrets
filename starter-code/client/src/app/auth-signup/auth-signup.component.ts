@@ -10,4 +10,11 @@ export class AuthSignupComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  submitForm(form){
+    console.log(form);
+    let {username, password, name, secret} = form.value;
+    console.log(`El usuario es ${username} con el passwd ${password} con el nombre ${name} y su secreto no tan secreto ${secret}`);
+  }
+
 }
