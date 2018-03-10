@@ -8,42 +8,43 @@ const bcrypt         = require("bcrypt");
 const bcryptSalt     = 19;
 
 authController.post("/signup", (req, res, next) => {
-  let username = req.body.username;
-  let password = req.body.password;
-  let name     = req.body.name;
-  let secret   = req.body.secret;
 
-  if (!username || !password || !name || !secret) {
+ console.log(req.body)
+  if (!req.body.username || !req.body.password || !req.body.name || !req.body.secret) {
     res.status(400).json({ message: "Provide all the fields to sign up" });
   }
 
-  User.findOne({ username }, "username", (err, user) => {
+  User.findOne({ username: req.body.username }, "username", (err, user) => {
     if (user !== null) {
       res.status(400).json({ message: "The username already exists" });
       return;
     }
 
-    let salt     = bcrypt.genSaltSync(bcryptSalt);
-    let hashPass = bcrypt.hashSync(password, salt);
+    //let salt     = bcrypt.genSaltSync(bcryptSalt);
+    //let hashPass = bcrypt.hashSync(req.body.password, salt);
 
-    let newUser  = User({
-      username,
+    //Alternate hassPass formula that works better per Andrei
+    let hashPass = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(9), null);
+
+    let newUser  = new User({
+      username: req.body.username,
       password: hashPass,
-      name,
-      secret
+      name: req.body.name,
+      secret: req.body.secret
     });
 
     console.log(newUser);
 
-    newUser.save((err) => {
-      if (err) { res.status(400).json({ message: "Something went wrong" }); }
-      else {
+    //Refactored for Promises
+
+    newUser.save()
+      .then( user => {
         req.login(newUser, (err) => {
           if (err) { return res.status(500).json({ message: "Something went wrong" }); }
           res.status(200).json(req.user);
-        });
-      }
-    });
+        })
+      })
+      .catch (err => res.status(400).json({ message: "Something went wrong" }))
   });
 });
 

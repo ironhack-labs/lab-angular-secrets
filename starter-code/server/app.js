@@ -28,7 +28,14 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(cors());
+
+//Cors
+var corsOptions = {
+  origin: true, 
+  credentials: true
+};
+app.use(cors(corsOptions));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // uncomment after placing your favicon in /public
