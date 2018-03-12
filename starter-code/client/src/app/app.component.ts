@@ -1,5 +1,7 @@
+
 import { Component, OnInit } from '@angular/core';
-import { Observable } from "rxjs/Rx";
+import { Observable } from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-root',
