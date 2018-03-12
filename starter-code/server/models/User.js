@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 const Schema   = mongoose.Schema;
 
 const userSchema = new Schema({
-  username: String,
-  password: String,
-  name: String,
-  secret: String
+  username: { type: String },
+  password: { type: String },
+  name: { type: String },
+  secret: {type: String }
 }, {
   timestamps: {
     createdAt: "created_at",
