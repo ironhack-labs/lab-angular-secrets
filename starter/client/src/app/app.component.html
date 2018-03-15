@@ -1,4 +1,13 @@
 <section id="main">
   <h1> Secrets </h1>
+  {{session.user.username}}
 </section>
+<div>
+  <a [routerLink]="['/home']"> Sign Up</a>
+  <p></p>
+  <a [routerLink]="['/login']"> Login</a>
+</div>
+<div>
+  <button (click)=doLogout()>LOGOUT</button>
+</div>
 <router-outlet></router-outlet>
