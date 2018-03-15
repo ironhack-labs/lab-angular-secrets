@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionService } from "./../session.service";
+import { SessionService } from './../../shared/services/session.service';
 
 @Component({
   selector: 'app-my-private-page',

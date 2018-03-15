@@ -1,5 +1,5 @@
 const LocalStrategy = require("passport-local").Strategy;
-const User          = require("../models/user");
+const User          = require("../models/user.model");
 const bcrypt        = require("bcrypt");
 
 module.exports = (passport) => {
@@ -25,3 +25,12 @@ module.exports = (passport) => {
     });
   });
 }
+
+ module.exports.isAuthenticated = (req, res, next) => {
+     if (req.isAuthenticated()) {
+         next()
+     } else {
+         res.status(401);
+         res.redirect('/login');
+     }
+ }
