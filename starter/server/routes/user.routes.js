@@ -1,13 +1,13 @@
 const express        = require("express");
 const router         = express.Router();
-const apiController = require('../controllers/api.controller');
+const userController = require('../controllers/user.controller');
 const passport =require('../config/passport.config');
 
 // router.get('/signup', passportController.signup);
-router.post('/signup', apiController.doSignup);
+router.post('/signup', userController.doSignup);
 
 // router.get('/login', passportController.login);
-router.post('/login', apiController.doLogin);
+// router.post('/login', userController.doLogin);
 
 // router.get('/logout', passportController.logout);
 

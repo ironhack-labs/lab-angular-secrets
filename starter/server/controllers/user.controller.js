@@ -54,27 +54,21 @@ module.exports.doSignup = (req, res, next) => {
 
 
 module.exports.doLogin = (req, res, next)=> {
-  return res.status(200).json({
-        message: "LOGIN"
-      });
-  
-
   passport.authenticate("local", (err, user, info) => {
-    //   if (err) {
-  //     return res.status(401).json(err);
-  //   }
-  //   if (!user) {
-  //     return res.status(401).json(info);
-  //   }
+      if (err) {
+      return res.status(401).json(err);
+    }
+    if (!user) {
+      return res.status(401).json(info);
+    }
 
-  //   req.login(user, (err) => {
-  //     if (err) {
-  //       return res.status(500).json({
-  //         message: "Something went wrong"
-  //       });
-  //     }
-  //     return res.status(200).json(req.user);
-  //   });
-  // })(req, res, next);
-})
+    req.login(user, (err) => {
+      if (err) {
+        return res.status(500).json({
+          message: "Something went wrong"
+        });
+      }
+      return res.status(200).json(req.user);
+    });
+  })(req, res, next);
 };

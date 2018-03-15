@@ -26,6 +26,8 @@ export class AuthLoginComponent implements OnInit {
     this.SessionService.login(this.user)
     .subscribe(
       (user) => {
+        console.log(user);
+        
         loginform.reset();
         this.router.navigate(['/private']);
       },

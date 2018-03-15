@@ -13,15 +13,12 @@ require('./config/passport.config').setup(passport);
 
 const MongoStore = require('connect-mongo')(session);
 
-const api = require('./routes/api.routes');
+const users = require('./routes/user.routes');
+const sessionrou = require('./routes/session.routes');
 
 const app = express();
 
 app.use(cors(corsConfig))
-
-// // view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -63,7 +60,8 @@ app.use((req, res, next) => {
 
 //ROUTES
 // app.use('/', index);
-app.use('/api', api);
+app.use('/users', users);
+app.use('/session', sessionrou);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

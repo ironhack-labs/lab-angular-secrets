@@ -16,13 +16,13 @@ export class SessionService {
   ) { }
 
   signup(user:User): Observable<User> {
-    return this.http.post(`${SessionService.SESSIONS_API}/signup`, JSON.stringify(user), SessionService.defaultOptions)
+    return this.http.post(`${SessionService.SESSIONS_API}/users/signup`, JSON.stringify(user), SessionService.defaultOptions)
       .map((res: Response) => res.json())
       .catch((error: Response) => this.handleError(error));
   }
 
   login(user:User): Observable<User> {
-    return this.http.post(`${SessionService.SESSIONS_API}/login`, JSON.stringify(user), SessionService.defaultOptions)
+    return this.http.post(`${SessionService.SESSIONS_API}/session/login`, JSON.stringify(user), SessionService.defaultOptions)
       .map((res: Response) => res.json())
       .catch((error: Response) => this.handleError(error));
   }
