@@ -1,0 +1,31 @@
+<form (ngSubmit)="onSubmitCreateForm(createForm)" #createForm="ngForm">
+  <div>
+    <label for="username">Username</label>
+    <input type="text" name="username" [(ngModel)]="user.username" #username="ngModel" required>
+    <ul *ngIf="username.errors && username.touched">
+      <li *ngIf="username.errors.required">Username is required</li>
+    </ul>
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input type="text" name="password" [(ngModel)]="user.password" #password="ngModel" required>
+    <ul *ngIf="password.errors && password.touched">
+      <li *ngIf="password.errors.required">Password is required</li>
+    </ul>
+  </div>
+  <div>
+    <label for="name">Name</label>
+    <input type="text" name="name" [(ngModel)]="user.name" #name="ngModel" required>
+    <ul *ngIf="name.errors && name.touched">
+      <li *ngIf="name.errors.required">Name is required</li>
+    </ul>
+  </div>
+  <div>
+    <label for="secret">Secret</label>
+    <input type="text" name="secret" [(ngModel)]="user.secret" #secret="ngModel" required>
+    <ul *ngIf="secret.errors && secret.touched">
+      <li *ngIf="secret.errors.required">Secret is required</li>
+    </ul>
+  </div>
+  <button type="submit" [disabled]="!createForm.valid">Save</button>
+</form>
