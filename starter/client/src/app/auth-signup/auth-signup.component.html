@@ -29,3 +29,5 @@
   </div>
   <button type="submit" [disabled]="!createForm.valid">Save</button>
 </form>
+
+<p class="error" *ngIf="error">{{ error | json }}</p>

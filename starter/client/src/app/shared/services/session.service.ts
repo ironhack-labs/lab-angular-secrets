@@ -21,6 +21,12 @@ export class SessionService {
       .catch((error: Response) => this.handleError(error));
   }
 
+  login(user:User): Observable<User> {
+    return this.http.post(`${SessionService.SESSIONS_API}/login`, JSON.stringify(user), SessionService.defaultOptions)
+      .map((res: Response) => res.json())
+      .catch((error: Response) => this.handleError(error));
+  }
+
   private handleError(error: Response): Observable<any> {
     if (!environment.production) {
       console.error(error);

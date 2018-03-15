@@ -7,7 +7,7 @@ const passport =require('../config/passport.config');
 router.post('/signup', apiController.doSignup);
 
 // router.get('/login', passportController.login);
-// router.post('/login', passportController.doLogin);
+router.post('/login', apiController.doLogin);
 
 // router.get('/logout', passportController.logout);
 

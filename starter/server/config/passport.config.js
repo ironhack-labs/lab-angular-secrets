@@ -18,7 +18,7 @@ module.exports.setup = (passport) => {
       .catch(error => next(error));
   });
   //usuario y contraseña
-  passport.use('local-auth', new localStrategy({
+  passport.use('local', new localStrategy({
     usernameField: 'username',
     passwordField: 'password'
   }, (username, password, next) => {
