@@ -16,7 +16,7 @@ require("./config/passport")(passport);
 
 // Mongoose configuration
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/angular-authentication");
+mongoose.connect("mongodb://localhost/angular-authentication", { useMongoClient: true });
 
 // Session
 app.use(session({
