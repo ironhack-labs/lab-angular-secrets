@@ -28,19 +28,19 @@ authController.post("/signup", (req, res, next) => {
       });
       return;
     }
-
-    let salt = bcrypt.genSaltSync(bcryptSalt);
-    let hashPass = bcrypt.hashSync(password, salt);
-
-    let newUser = User({
-      username,
-      password: hashPass,
-      name,
-      secret
-    });
-
+    
+    // let salt = bcrypt.genSaltSync(bcryptSalt);
+    // let hashPass = bcrypt.hashSync(password, salt);
+    
+    // let newUser = User({
+      //   username,
+      //   password: hashPass,
+      //   name,
+      //   secret
+      // });
+      
+    let newUser = new User(req.body);
     console.log(newUser);
-
     newUser.save((err) => {
       if (err) {
         res.status(400).json({

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const DB_NAME = 'ex-passport-auth';
+const DB_NAME = 'angular-authentication';
 const MONGO_URI = `mongodb://localhost/${DB_NAME}`;
 
 mongoose.Promise = Promise;
