@@ -27,7 +27,6 @@ export class AuthLoginComponent implements OnInit {
     .subscribe(
       (user) => {
         console.log(user);
-        
         loginform.reset();
         this.router.navigate(['/private']);
       },
