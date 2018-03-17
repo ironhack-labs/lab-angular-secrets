@@ -1,0 +1,11 @@
+<h1> Authentication Sample </h1>
+<form (ngSubmit)="onSubmitLogin(formInfo)" #formInfo="ngForm">
+  <h2> Signup </h2>
+  <label> Username </label>
+  <input type="text" [(ngModel)]="user.username" name="username"/>
+  <br>
+  <label> Password </label>
+  <input type="password" [(ngModel)]="user.password" name="password"/>
+  <button [disabled]="!formInfo.valid"> Sign Up </button>
+</form>
+<p class="error"> {{ error }} </p>
