@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SessionService } from '../session.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth-login',
@@ -6,8 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./auth-login.component.css']
 })
 export class AuthLoginComponent implements OnInit {
-  constructor() { }
+  username: string;
+  password: string;
+  
+  constructor(
+    public sessionService: SessionService,
+    public router: Router
+  ) { }
 
   ngOnInit() {
+  }
+  
+  login() {
+    console.log(this.username, this.password);
+    this.sessionService.login(this.username, this.password).subscribe( () => {
+      this.router.navigate(['/private'])
+    });
   }
 }

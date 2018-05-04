@@ -33,8 +33,6 @@ authController.post("/signup", (req, res, next) => {
       secret
     });
 
-    console.log(newUser);
-
     newUser.save((err) => {
       if (err) { res.status(400).json({ message: "Something went wrong" }); }
       else {
