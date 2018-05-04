@@ -17,5 +17,6 @@ export const routes: Routes = [
    },
    {
     path: 'private', component: MyPrivatePageComponent
- },
+ }, 
+ 
 ];
