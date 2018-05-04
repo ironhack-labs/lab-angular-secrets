@@ -5,7 +5,7 @@ import { MyPrivatePageComponent } from './my-private-page/my-private-page.compon
 
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', component: AuthLoginComponent },
   { path: 'login',  component: AuthLoginComponent },
   { path: 'signup', component: AuthSignupComponent},
   { path: 'private', component: MyPrivatePageComponent}

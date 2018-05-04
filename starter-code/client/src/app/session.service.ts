@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { Http } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 const BASEURL = 'http://localhost:3000';
@@ -9,47 +9,42 @@ const BASEURL = 'http://localhost:3000';
 @Injectable()
 export class SessionService {
 
-
   user: any;
-  userEvent: EventEmitter<any> = new EventEmitter();
-  options: any = { withCredentials: true };
 
-  constructor(private http: Http) {}
+  constructor(private http: Http) {
+    this.isLoggedIn().subscribe();
+  }
 
   handleError(e) {
     return Observable.throw(e.json().message);
   }
 
-  handleUser(user?: object) {
-    this.user = user;
-    this.userEvent.emit(this.user);
-    return this.user;
-  }
-
   signup(user) {
-    return this.http.post(`${BASEURL}/api/auth/signup`, user, this.options)
+    return this.http.post(`${BASEURL}/api/signup`, user)
       .map(res => res.json())
-      .map(user => this.handleUser(user))
+      .map(user => (this.user = user))
       .catch(this.handleError);
   }
 
   login(username, password) {
-    return this.http.post(`${BASEURL}/api/auth/login`, {username, password}, this.options)
+    return this.http.post(`${BASEURL}/api/login`, {username, password})
       .map(res => res.json())
-      .map(user => this.handleUser(user))
+      .map(user => (this.user = user))
       .catch(this.handleError);
   }
 
   isLoggedIn() {
-    return this.http.get(`${BASEURL}/api/auth/loggedin`, this.options)
+    return this.http.get(`${BASEURL}/api/loggedin`)
       .map(res => res.json())
-      .map(user => this.handleUser(user))
+      .map(user => (this.user = user))
       .catch(this.handleError);
   }
 
   logout() {
-    return this.http.get(`${BASEURL}/api/auth/logout`,this.options)
-      .map(() => this.handleUser())
+    return this.http
+      .post(`${BASEURL}/api/logout`, {})
+      .map(res => res.json())
+      .map(() => (this.user = null))
       .catch(this.handleError);
   }
 
