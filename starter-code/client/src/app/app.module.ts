@@ -12,9 +12,9 @@ import { MyPrivatePageComponent } from './my-private-page/my-private-page.compon
 
 const routes : Routes = [
  
-    { path: "/signup", component: AuthSignupComponent},
-    { path: "/login", component: AuthLoginComponent},
-    { path: "/private", redirectTo: "MyPrivatePageComponent"},
+    { path: "signup", component: AuthSignupComponent},
+    { path: "login", component: AuthLoginComponent},
+    { path: "private", redirectTo: "MyPrivatePageComponent"},
   
 ]
 
@@ -28,7 +28,8 @@ const routes : Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [SessionService],
   bootstrap: [AppComponent]
