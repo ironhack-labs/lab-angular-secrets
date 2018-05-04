@@ -44,13 +44,13 @@ export class SessionService {
   logout() {
     return this.http
       .post(`${BASEURL}/api/logout`, this.options)
-      .map(() => this.handleUser)
+      .map(() => this.handleUser())
       .catch(this.handleError);
   }
 
   isLogged() {
     return this.http
-      .get(`${BASEURL}/api/auth/loggedin`, this.options)
+      .get(`${BASEURL}/api/loggedin`, this.options)
       .map(res => res.json())
       .map(user => this.handleUser(user))
       .catch(this.handleError);

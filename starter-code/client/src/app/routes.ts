@@ -6,5 +6,6 @@ import { AuthSignupComponent } from './auth-signup/auth-signup.component';
 export const routes: Routes = [
   {path: 'signup', component: AuthSignupComponent},
   {path: 'login', component: AuthLoginComponent},
+  {path: 'private', component: MyPrivatePageComponent},
 ];
 
