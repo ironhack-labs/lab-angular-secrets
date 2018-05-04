@@ -13,5 +13,6 @@ export class MyPrivatePageComponent implements OnInit {
   constructor(private session: SessionService) { }
 
   ngOnInit() {
+    
   }
 }
