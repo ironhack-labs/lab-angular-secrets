@@ -1,0 +1,7 @@
+<form>
+    <input type="text" placeholder="Username *" name="username" [(ngModel)]="user.username" >
+    <input type="password" placeholder="Password *" name="password"[(ngModel)]="user.password" >
+    <input type="text" placeholder="Full Name *" name="fullname"[(ngModel)]="user.fullname" >
+    <input type="password" placeholder="Secret *" name="secret" [(ngModel)]="user.secret">
+    <button (click)="signup(user)">Click me!</button>
+  </form>

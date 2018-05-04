@@ -5,12 +5,13 @@ const passport       = require("passport");
 const User           = require("../models/user");
 
 const bcrypt         = require("bcrypt");
-const bcryptSalt     = 19;
+const bcryptSalt     = 5;
 
 authController.post("/signup", (req, res, next) => {
+  console.log('entra')
   let username = req.body.username;
   let password = req.body.password;
-  let name     = req.body.name;
+  let name     = req.body.fullname;
   let secret   = req.body.secret;
 
   if (!username || !password || !name || !secret) {
