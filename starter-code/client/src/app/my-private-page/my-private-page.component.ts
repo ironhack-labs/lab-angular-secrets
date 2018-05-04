@@ -7,8 +7,6 @@ import { SessionService } from "./../session.service";
   styleUrls: ['./my-private-page.component.css']
 })
 export class MyPrivatePageComponent implements OnInit {
-  username: string = "";
-  secret: string = "";
 
   constructor(private service: SessionService) { }
 
