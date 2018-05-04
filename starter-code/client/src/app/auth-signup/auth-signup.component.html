@@ -1,1 +1,20 @@
-auth-signup component
+<h1> Authentication Sample </h1>
+<form>
+  <h2> Login or Signup </h2>
+  <label> Username </label>
+  <input type="text" [(ngModel)]="username" name="username" />
+  <br>
+  <label> Password </label>
+  <input type="password" [(ngModel)]="password" name="password" />
+  <br>
+  <label> Full name </label>
+  <input type="text" [(ngModel)]="name" name="name" />
+  <br>
+  <label> Secret </label>
+  <input type="password" [(ngModel)]="secret" name="secret" />
+
+  <div>
+    <button (click)="signup()"> login </button>
+  </div>
+</form>
+<p class="error"> {{ error }} </p>
