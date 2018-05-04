@@ -5,7 +5,7 @@ const passport       = require("passport");
 const User           = require("../models/user");
 
 const bcrypt         = require("bcrypt");
-const bcryptSalt     = 19;
+const bcryptSalt     = 10;
 
 authController.post("/signup", (req, res, next) => {
   let username = req.body.username;
@@ -32,8 +32,6 @@ authController.post("/signup", (req, res, next) => {
       name,
       secret
     });
-
-    console.log(newUser);
 
     newUser.save((err) => {
       if (err) { res.status(400).json({ message: "Something went wrong" }); }
