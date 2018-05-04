@@ -8,7 +8,9 @@ const BASE_URL = "http://localhost:3000";
 @Injectable()
 export class SessionService {
   user: any;
-  constructor(private http: Http) {}
+  constructor(private http: Http) {
+  this.isLoggedIn().subscribe();
+  }
   handleError(e) {
     return Observable.throw(e.json().message);
   }
