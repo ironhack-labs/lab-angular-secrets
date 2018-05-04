@@ -29,6 +29,7 @@ export class SessionService {
     
   }
   signup(user){
+    console.log(this.http.post(`${this.BASEURL}/api/signup`, user, this.options))
     return this.http.post(`${this.BASEURL}/api/signup`, user, this.options)
     .map(res => res.json())
     .map(user => this.handleUser(user))

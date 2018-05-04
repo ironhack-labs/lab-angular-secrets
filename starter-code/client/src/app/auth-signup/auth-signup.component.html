@@ -1,15 +1,17 @@
-<form>
-  <h2>Login or Signup</h2>
-  <label>Username </label>
-  <input type="text" [(ngModel)]="username" name="username"/>
-  <label>Password </label>
-  <input type="password" name="password" [(ngModel)]="password" />
-  <label>Name </label>
-  <input type="text" name="password" [(ngModel)]="name" />
-  <label>Secret </label>
-  <input type="text" name="password" [(ngModel)]="secret" />
-  <div>
-    <button (click)="signup()">Sign up  </button>
-  </div>
-</form>
-<p class="error"> {{error}}</p>
+<div class="container">
+  <form>
+    <h2>Login or Signup</h2>
+    <label>Username </label>
+    <input type="text" [(ngModel)]="username" name="username"/>
+    <label>Password </label>
+    <input type="password" name="password" [(ngModel)]="password" />
+    <label>Name </label>
+    <input type="text" name="password" [(ngModel)]="name" />
+    <label>Secret </label>
+    <input type="text" name="password" [(ngModel)]="secret" />
+    <div>
+      <button (click)="signup()" class="action">Sign up  </button>
+    </div>
+  </form>
+  <p class="error"> {{error}}</p>
+</div>

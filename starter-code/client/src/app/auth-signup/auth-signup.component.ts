@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { SessionService } from "../session.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-auth-signup",
@@ -11,7 +12,7 @@ export class AuthSignupComponent {
   password: string;
   name: string;
   secret: string;
-  constructor(public sessionService: SessionService) {}
+  constructor(public sessionService: SessionService, private router:Router) {}
 
   signup() {
     const user = {
@@ -26,7 +27,7 @@ export class AuthSignupComponent {
       this.password = "";
       this.name = "";
       this.secret = "";
-      this.sessionService.isLoggedIn().subscribe();
+      this.sessionService.isLoggedIn().subscribe(() => this.router.navigate(['/private']));
     })
   }
 }

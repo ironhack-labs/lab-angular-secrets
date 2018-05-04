@@ -1,8 +1,14 @@
+<div class="container">
   <form>
-    <label>Username</label>
-    <input name="username" type="text" [(ngModel)]="username"/>
-    <label>Password</label>
-    <input type="password" name="password" [(ngModel)]="password"/>
-    <button (click)="login()">Log in</button>
+    <div>
+      <label>Username</label>
+      <input name="username" type="text" [(ngModel)]="username" />
+    </div>
+    <div>
+      <label>Password</label>
+      <input type="password" name="password" [(ngModel)]="password" />
+    </div>
+    <button class="action" (click)="login()" class="action">Log in</button>
+    <a [routerLink]="['/signup']" >You don't have an account?</a>
   </form>
-    <a [routerLink]="['/signup']">You don't have an account?</a>
+</div>
