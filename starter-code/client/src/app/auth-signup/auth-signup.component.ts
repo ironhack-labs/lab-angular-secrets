@@ -23,7 +23,8 @@ export class AuthSignupComponent implements OnInit {
       secret: this.secret
     };
     console.log(user);
-    this.sessionService.signup(user).subscribe();
-    this.router.navigate(["/private"]);
+    this.sessionService.signup(user).subscribe(() => {
+      this.router.navigate(["/private"]);
+    });
   }
 }
