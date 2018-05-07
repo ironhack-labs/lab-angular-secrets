@@ -11,6 +11,21 @@ const passport       = require("passport");
 
 const app            = express();
 
+
+
+
+var whitelist = [
+  'http://localhost:4200',
+];
+var corsOptions = {
+  origin: function(origin, callback){
+      var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
+      callback(null, originIsWhitelisted);
+  },
+  credentials: true
+};
+app.use(cors(corsOptions));
+
 // Passport configuration
 require("./config/passport")(passport);
 
@@ -18,6 +33,7 @@ require("./config/passport")(passport);
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/angular-authentication");
 
+//app.use(co rs());
 // Session
 app.use(session({
   secret: "lab-angular-authentication",
@@ -28,7 +44,6 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // uncomment after placing your favicon in /public
