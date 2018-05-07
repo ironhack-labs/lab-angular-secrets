@@ -1,3 +1,15 @@
 <section id="main">
   <h1> Secrets </h1>
 </section>
+
+
+<div *ngIf="!sessionService.user">
+  <app-auth-login></app-auth-login>
+  <app-auth-signup></app-auth-signup>
+</div>
+
+
+<div *ngIf="sessionService.user">
+  <h2>BIENVENIDO SR PATATA</h2>
+  <button (click)="sessionService.logout().subscribe()"> Logout </button>
+</div>
