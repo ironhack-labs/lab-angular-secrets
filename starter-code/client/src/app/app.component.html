@@ -1,3 +1,16 @@
+
 <section id="main">
   <h1> Secrets </h1>
+  {{title}}
 </section>
+<div *ngIf="!this.sessionService.user">
+  <a [routerLink]='["/login"]'><button>login show</button></a> 
+  <a [routerLink]='["/signup"]'><button>signup show</button></a> 
+</div>
+<div *ngIf="this.sessionService.user">
+<button (click)="sessionService.logout().subscribe()">logout</button>
+</div>
+
+
+<router-outlet></router-outlet>
+
