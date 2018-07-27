@@ -20,10 +20,12 @@ mongoose.connect("mongodb://localhost/angular-authentication");
 
 // Session
 app.use(session({
+
   secret: "lab-angular-authentication",
   resave: true,
   saveUninitialized: true,
-  cookie: { httpOnly: true, maxAge: 2419200000 }
+  cookie: { httpOnly: true, maxAge: 2419200000 },
+  store: new MongoStore({mongooseConnection: mongoose.connection})
 }));
 
 app.use(passport.initialize());
