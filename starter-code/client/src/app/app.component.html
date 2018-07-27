@@ -1,3 +1,12 @@
 <section id="main">
-  <h1> Secrets </h1>
+  <h1>IronSecrets</h1>
 </section>
+
+<div *ngIf="!sessionService.user">
+  <a [routerLink]="['/login']">LogIn</a> <br> <br>
+  <a [routerLink]="['/signup']">Signup</a>
+</div>
+
+<button (click)="logout()" *ngIf="sessionService.user">Logout</button> <br>
+
+<router-outlet></router-outlet>

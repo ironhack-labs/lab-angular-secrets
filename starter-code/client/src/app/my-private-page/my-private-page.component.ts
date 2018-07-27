@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionService } from "./../session.service";
+import { SessionService, User } from "./../session.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-private-page',
@@ -7,11 +8,17 @@ import { SessionService } from "./../session.service";
   styleUrls: ['./my-private-page.component.css']
 })
 export class MyPrivatePageComponent implements OnInit {
-  username: string = "";
-  secret: string = "";
+  user: object;
 
-  constructor(private session: SessionService) { }
+  constructor(private session: SessionService, public router: Router) { }
 
   ngOnInit() {
+    this.session.loggedin().subscribe(user => {
+      if (user) {
+        this.user = user;
+      } else {
+        this.router.navigate(['login']);
+      }
+    });
   }
 }

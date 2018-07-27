@@ -8,7 +8,6 @@ const cors           = require("cors");
 const authController = require("./routes/authController");
 const session        = require("express-session");
 const passport       = require("passport");
-
 const app            = express();
 
 // Passport configuration
@@ -28,7 +27,20 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(cors());
+
+const whitelist = [
+  'http://localhost:4200',
+]
+
+const corsOptions = {
+  origin: (origin, cb) => {
+    var originIsWhiteListed = whitelist.indexOf(origin) !== -1;
+    cb(null, originIsWhiteListed);
+  },
+  credentials: true
+}
+
+app.use(cors(corsOptions));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // uncomment after placing your favicon in /public
