@@ -24,8 +24,7 @@ app.use(session({
   secret: "lab-angular-authentication",
   resave: true,
   saveUninitialized: true,
-  cookie: { httpOnly: true, maxAge: 2419200000 },
-  store: new MongoStore({mongooseConnection: mongoose.connection})
+  cookie: { httpOnly: true, maxAge: 2419200000 }
 }));
 
 app.use(passport.initialize());

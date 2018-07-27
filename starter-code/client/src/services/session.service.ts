@@ -51,7 +51,7 @@ export class SessionService {
     signup(username:string, password:string, name:string, secret:string): Observable<object>{
       return this.http.post(`${BASEURL}/api/signup`,{username,password,name,secret},this.options).pipe(map( (res:Response) => {
           let data = res.json();
-          this.user = data.user;
+          this.user = data;
           return this.user;
         }),
         catchError( e => of(this.errorHandler(e)))
