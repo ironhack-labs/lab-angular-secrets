@@ -1,78 +1,87 @@
 const express        = require("express");
-const authController = express.Router();
+const router  = express.Router();
 const passport       = require("passport");
 
 const User           = require("../models/user");
 
 const bcrypt         = require("bcrypt");
 const bcryptSalt     = 10;
+const login = (req, user) => {
+  return new Promise((resolve,reject) => {
+    req.login(user, err => {
+      if(err) {
+        reject(new Error('Something went wrong'))
+      }else{
+        resolve(user);
+      }
+    })
+  })
+}
 
-authController.post("/signup", (req, res, next) => {
-  let username = req.body.username;
-  let password = req.body.password;
-  let name     = req.body.name;
-  let secret   = req.body.secret;
 
-  if (!username || !password || !name || !secret) {
-    res.status(400).json({ message: "Provide all the fields to sign up" });
+// SIGNUP
+router.post('/signup', (req, res, next) => {
+
+  const {username, name, secret, password,} = req.body;
+
+  // Check for non empty user or password
+  if (!username || !password){
+    next(new Error('You must provide valid credentials'));
   }
 
-  User.findOne({ username }, "username", (err, user) => {
-    if (user !== null) {
-      res.status(400).json({ message: "The username already exists" });
-      return;
-    }
+  // Check if user exists in DB
+  User.findOne({ username })
+  .then( foundUser => {
+    if (foundUser) throw new Error('Username already exists');
 
-    let salt     = bcrypt.genSaltSync(bcryptSalt);
-    let hashPass = bcrypt.hashSync(password, salt);
+    const salt     = bcrypt.genSaltSync(bcryptSalt);
+    const hashPass = bcrypt.hashSync(password, salt);
 
-    let newUser  = User({
+
+    return new User({
       username,
-      password: hashPass,
       name,
-      secret
-    });
-
-    console.log(newUser);
-
-    newUser.save((err) => {
-      if (err) { res.status(400).json({ message: "Something went wrong" }); }
-      else {
-        req.login(newUser, (err) => {
-          if (err) { return res.status(500).json({ message: "Something went wrong" }); }
-          res.status(200).json(req.user);
-        });
-      }
-    });
-  });
+      secret,
+      password: hashPass,
+    }).save();
+  })
+  .then( savedUser => login(req, savedUser)) // Login the user using passport
+  .then( user => res.json({status: 'signup & login successfully', user})) // Answer JSON
+  .catch(e => next(e));
 });
 
-authController.post("/login", (req, res, next) => {
-  passport.authenticate("local", (err, user, info) => {
-    if (err) { return res.status(401).json(err); }
-    if (!user) { return res.status(401).json(info); }
 
-    req.login(user, (err) => {
-      if (err) { return res.status(500).json({ message: "Something went wrong" }); }
-      return res.status(200).json(req.user);
-    });
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local', (err, theUser, failureDetails) => {
+    
+    // Check for errors
+    if (err) next(new Error('Something went wrong')); 
+    if (!theUser) next(failureDetails)
+
+    // Return user and logged in
+    login(req, theUser).then(user => res.status(200).json(req.user));
+
   })(req, res, next);
 });
 
-authController.post("/logout", (req, res) => {
+
+router.get('/currentuser', (req,res,next) => {
+  if(req.user){
+    res.status(200).json(req.user);
+  }else{
+    next(new Error('Not logged in'))
+  }
+})
+
+
+router.get('/logout', (req,res) => {
   req.logout();
-  res.status(200).json({ message: "Success" });
-});
-
-authController.get("/loggedin", (req, res) => {
-  if (req.isAuthenticated()) { return res.status(200).json(req.user); }
-  return res.status(403).json({ message: "Unauthorized" });
-});
-
-authController.get("/private", (req, res) => {
-  if (req.isAuthenticated()) { return res.json({ message: req.user.secret }); }
-  return res.status(403).json({ message: "Unauthorized" });
+  res.status(200).json({message:'logged out'})
 });
 
 
-module.exports = authController;
+router.use((err, req, res, next) => {
+  res.status(500).json({ message: err.message });
+})
+
+module.exports = router;
