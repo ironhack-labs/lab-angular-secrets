@@ -49,6 +49,7 @@ authController.post("/signup", (req, res, next) => {
 
 authController.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
+    console.log(user)
     if (err) { return res.status(401).json(err); }
     if (!user) { return res.status(401).json(info); }
 
