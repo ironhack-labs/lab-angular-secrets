@@ -10,7 +10,7 @@ export class MyPrivatePageComponent implements OnInit {
   username: string = "";
   secret: string = "";
 
-  constructor(private session: SessionService) { }
+  constructor(private SessionService: SessionService) { }
 
   ngOnInit() {
   }

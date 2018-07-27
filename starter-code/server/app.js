@@ -8,11 +8,9 @@ const cors           = require("cors");
 const authController = require("./routes/authController");
 const session        = require("express-session");
 const passport       = require("passport");
+const MongoStore = require("connect-mongo")(session)
 
 const app            = express();
-
-// Passport configuration
-require("./config/passport")(passport);
 
 // Mongoose configuration
 const mongoose = require("mongoose");
@@ -20,15 +18,31 @@ mongoose.connect("mongodb://localhost/angular-authentication");
 
 // Session
 app.use(session({
-  secret: "lab-angular-authentication",
+  secret: "angular auth passport secret shh",
   resave: true,
   saveUninitialized: true,
-  cookie: { httpOnly: true, maxAge: 2419200000 }
+  cookie: { httpOnly: true, maxAge: 2419200000 },
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
 
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(cors());
+// Passport configuration
+require('./passport')(app);
+
+//CORS Setup
+
+var whiteList = [
+  'http://localhost:4200'
+];
+
+var corsOptions = {
+  origin: function(origin, callback){
+    var originWhiteListed = whiteList.indexOf(origin) !== -1;
+    callback(null, originWhiteListed);
+  },
+  credentials: true
+}
+
+app.use(cors(corsOptions));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // uncomment after placing your favicon in /public
