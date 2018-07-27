@@ -33,7 +33,7 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 const whitelist = [
-  'http://localhost:4200/',
+  'http://localhost:4200',
 ];
 const corsOptions = {
   origin: function (origin, callback) {
