@@ -75,4 +75,8 @@ authController.get("/private", (req, res) => {
 });
 
 
+authController.use((req, res, next) => {
+  res.status(500).json({ message: "Unauthorized" });
+})
+
 module.exports = authController;
