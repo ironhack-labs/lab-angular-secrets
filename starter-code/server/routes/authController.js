@@ -59,7 +59,7 @@ authController.post("/login", (req, res, next) => {
   })(req, res, next);
 });
 
-authController.post("/logout", (req, res) => {
+authController.get("/logout", (req, res) => {
   req.logout();
   res.status(200).json({ message: "Success" });
 });

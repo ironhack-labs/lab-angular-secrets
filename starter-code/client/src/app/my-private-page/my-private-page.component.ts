@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionService } from "./../session.service";
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-my-private-page',
@@ -10,7 +10,7 @@ export class MyPrivatePageComponent implements OnInit {
   username: string = "";
   secret: string = "";
 
-  constructor(private session: SessionService) { }
+  constructor(private sessionService: SessionService) { }
 
   ngOnInit() {
   }

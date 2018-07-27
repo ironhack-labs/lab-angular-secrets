@@ -1,14 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { SessionService } from "./session.service";
-
+import { NgModule, OnInit } from '@angular/core';
+import {RouterModule} from '@angular/router'
 import { AppComponent } from './app.component';
+import { HttpModule, Http } from '../../node_modules/@angular/http';
+import { routes } from '../routes';
+import { SessionService } from '../services/session.service';
 import { AuthLoginComponent } from './auth-login/auth-login.component';
 import { AuthSignupComponent } from './auth-signup/auth-signup.component';
 import { MyPrivatePageComponent } from './my-private-page/my-private-page.component';
-
+import {FormsModule} from '@angular/forms'
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,10 +18,13 @@ import { MyPrivatePageComponent } from './my-private-page/my-private-page.compon
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(routes),
+    FormsModule
   ],
   providers: [SessionService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+
+}
