@@ -1,0 +1,11 @@
+<form >
+  <label for="username">Username</label>
+  <input type="text" name="username" [(ngModel)]="username">
+  <label for="name">Name</label>
+  <input type="text" name="name" [(ngModel)]="name">
+  <label for="secret">My secret</label>
+  <input type="text" name="secret" [(ngModel)]="secret">
+  <label for="password">Password</label>
+  <input type="password" name="password" [(ngModel)]="password">
+  <button (click) = "signup(username, password, secret, name)" >signup</button>
+</form>
