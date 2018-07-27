@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from "rxjs/Rx";
+import { SessionService } from './session.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +9,14 @@ import { Observable } from "rxjs/Rx";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor() { }
+  constructor(private sessionServ: SessionService, private router:Router) { }
 
   ngOnInit() {
+  }
+
+  logout() {
+    this.sessionServ.logout().subscribe(() => {
+      this.router.navigate(['/']);
+    });
   }
 }
