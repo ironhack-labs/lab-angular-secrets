@@ -1,3 +1,10 @@
-<section id="main">
-  <h1> Secrets </h1>
-</section>
+<div class="logged" *ngIf="sessionService.user">
+    <a href="#" (click)="logout()">Logout</a>
+
+  </div>
+  <div class="not-logged" *ngIf="!sessionService.user">
+    <a [routerLink]="['/login']">Login</a>
+    <a [routerLink]="['/signup']">SignUp</a>
+  </div>
+
+<router-outlet></router-outlet>

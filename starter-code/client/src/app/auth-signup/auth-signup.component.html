@@ -1,0 +1,11 @@
+<section id="main">
+  <h1> Secrets </h1>
+</section>
+
+<form (ngSubmit)="sendData(user)" #myform="ngForm">
+  <input type="text" placeholder="username" name='username' [(ngModel)]="user.username" #myusername ="ngModel">
+  <input type="text" placeholder="password" name='password' [(ngModel)]="user.password" #mypassword ="ngModel">
+  <input type="text" placeholder="secret" name='secret' [(ngModel)]="user.secret" #mysecret ="ngModel">
+  <input type="text" placeholder="name" name='name' [(ngModel)]="user.name" #myname ="ngModel">
+  <button type="submit">SignUp</button>
+</form>

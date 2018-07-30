@@ -1,0 +1,5 @@
+<form (ngSubmit)="sendData(formData)" #myform="ngForm">
+  <input type="text" placeholder="username" name='username' [(ngModel)]="formData.username" #myusername ="ngModel">
+  <input type="text" placeholder="password" name='password' [(ngModel)]="formData.password" #mypassword ="ngModel">
+  <button type="submit">SignUp</button>
+</form>
