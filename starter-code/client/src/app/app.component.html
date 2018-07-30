@@ -1,3 +1,10 @@
 <section id="main">
   <h1> Secrets </h1>
 </section>
+<a [routerLink]="['login']">Puerta</a>
+<a (click)="botones.logout()">Salida</a>
+<a [routerLink]="['signup']">Recepcion</a>
+<a [routerLink]="['private']">Mi Jardin Secretoo</a>
+
+
+<router-outlet></router-outlet>
